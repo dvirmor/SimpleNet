@@ -12,7 +12,8 @@ import sys
 import click
 import numpy as np
 import torch
-
+import matplotlib
+matplotlib.use('Agg')
 sys.path.append("src")
 import backbones
 import common
@@ -96,7 +97,7 @@ def run(
                 i_auroc, p_auroc, pro_auroc = SimpleNet.train(dataloaders["training"], dataloaders["testing"])
             else:
                 # BUG: the following line is not using. Set test with True by default.
-                # i_auroc, p_auroc, pro_auroc =  SimpleNet.test(dataloaders["training"], dataloaders["testing"], save_segmentation_images)
+                i_auroc, p_auroc, pro_auroc = SimpleNet.test(dataloaders["training"], dataloaders["testing"], save_segmentation_images)
                 print("Warning: Pls set test with true by default")
 
             result_collect.append(
